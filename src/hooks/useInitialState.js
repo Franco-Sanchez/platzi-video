@@ -4,9 +4,12 @@ function useInitialState(API) {
   const [videos, setVideos] = useState([]);
   
   useEffect(() => {
-    fetch(API)
-      .then((response) => response.json())
-      .then((data) => setVideos(data));
+    const getVideos = async () => {
+      const response = await fetch(API);
+      const data = await response.json();
+      setVideos(data);
+    }
+    getVideos();
   }, []);
 
   return videos;
